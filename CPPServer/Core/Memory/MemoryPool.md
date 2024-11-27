@@ -1,6 +1,7 @@
 # MemoryPool
 
-메모리 문제로 인한 여러 상황을 대비 하기 위해 MemoryPool을 만들었습니다. 
+메모리의 할당과 해제에 따른 Context Switching 비용의 절감과, 메모리 단편화와 같은 문제를 해결하기 위해 Memory Pool을 제작했습니다. 풀에서 관리되는 객체의 경우 메모리 헤더를 부착해 관리를 위한 다양한 정보를 가지게 만들었습니다. 
+
 
 **MemoryPool.h**
 ```c++
@@ -133,7 +134,6 @@ class Memory
 {
 	enum
 	{
-		//~1024까지 32단위, ~2048까지 128단위, ~4096까지 256단위
 		POOL_COUNT = (1024 / 32) + (1024 / 128) + (2048 / 256),
 		MAX_ALLOC_SIZE = 4096,
 	};
@@ -181,10 +181,6 @@ shared_ptr<Type> MakeShared()
 #include "pch.h"
 #include "Memory.h"
 #include "MemoryPool.h"
-
-/*-------------
-	Memory
--------------*/
 
 Memory::Memory()
 {
@@ -285,6 +281,10 @@ void Memory::Release(void* ptr)
 #endif
 }
 ```
+
+Memory에서는 각 memory size에 맞게 1024까지 32단위, 2048까지 128단위, 4096까지 256단위로 MemoryPool이 나눠지게 만들었고 각 size에 맞는 MemoryPool에서 메모리 풀링이 이루어지게 만들었습니다.  
+
+그리고 xnew와 xdelete를 통해 MemoryPooling을 할 수 있게 만들었습니다. 만약 엄청나게 큰 size의 객체(4096)가 들어오면 일반 해제를 하게 만들었습니다. 그정도로 큰 size의 데이터의 경우에는 Pooling에 따른 메리트가 없을 것 같다고 판단했기 때문입니다.
 
 
 
