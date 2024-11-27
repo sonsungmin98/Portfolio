@@ -3,7 +3,7 @@
 메모리의 할당과 해제에 따른 Context Switching 비용의 절감과, 메모리 단편화와 같은 문제를 해결하기 위해 Memory Pool을 제작했습니다. 풀에서 관리되는 객체의 경우 메모리 헤더를 부착해 관리를 위한 다양한 정보를 가지게 만들었습니다. 
 
 
-**MemoryPool.h**
+## MemoryPool.h
 ```c++
 #pragma once
 
@@ -11,10 +11,6 @@ enum
 {
 	SLIST_ALIGMENT = 16
 };
-
-/*----------------------
-	MemoryHeader
-----------------------*/
 
 DECLSPEC_ALIGN(SLIST_ALIGMENT)
 struct MemoryHeader : public SLIST_ENTRY
@@ -36,10 +32,6 @@ struct MemoryHeader : public SLIST_ENTRY
 	int32 allocSize;
 	// TODO : 필요한 추가 정보
 };
-
-/*----------------------
-	MemoryPool
-----------------------*/
 
 DECLSPEC_ALIGN(SLIST_ALIGMENT)
 class MemoryPool
@@ -66,7 +58,7 @@ Memory Header에는 기본적으로 여러 정보들을 담게 되며 SLIST_ENTR
 
 따라서 DECLSPEC_ALIGN(SLIST_ALIGMENT)를 사용하여 ALignment을 맞춰줬습니다.
   
-**MemoryPool.cpp**
+## MemoryPool.cpp
 ```c++
 #include "pch.h"
 #include "MemoryPool.h"
@@ -113,14 +105,12 @@ MemoryHeader* MemoryPool::Pop(void)
 
 	return memory;
 }
-```
-cpp 쪽에서는 Push와 Pop을 제공합니다.  
-  
+```  
 위의 함수들이 Pooling에서 사용하는 기본적인 클래스 입니다.  
 
 # Memory
 
-**Memory.h**
+## Memory.h
 ```c++
 #pragma once
 #include "Allocator.h"
@@ -152,31 +142,9 @@ private:
 	// O(1) 빠르게 찾기 위한 테이블
 	MemoryPool* _poolTable[MAX_ALLOC_SIZE + 1];
 };
-
-
-template<typename Type, typename... Args>
-Type* xnew(Args&&... args)
-{
-	Type* memory = static_cast<Type*>(PoolAllocator::Alloc(sizeof(Type)));
-	new(memory)Type(std::forward<Args>(args)...); // placement new, constructor
-	return memory;
-}
-
-template<typename Type>
-void xdelete(Type* obj)
-{
-	obj->~Type(); // destructor
-	PoolAllocator::Release(obj);
-}
-
-template<typename Type>
-shared_ptr<Type> MakeShared()
-{
-	return shared_ptr<Type>{ xnew<Type>(), xdelete<Type> };
-}
 ```
 
-**Memory.cpp**
+## Memory.cpp
 ```c++
 #include "pch.h"
 #include "Memory.h"
@@ -282,11 +250,57 @@ void Memory::Release(void* ptr)
 }
 ```
 
-Memory에서는 각 memory size에 맞게 1024까지 32단위, 2048까지 128단위, 4096까지 256단위로 MemoryPool이 나눠지게 만들었고 각 size에 맞는 MemoryPool에서 메모리 풀링이 이루어지게 만들었습니다.  
+Memory에서는 각 memory size에 맞게 MemoryPool이 나눠지게 만들었고 각 size에 맞는 MemoryPool에서 메모리 풀링이 이루어지게 만들었습니다.  
+ - 1024까지 32단위
+ - 2048까지 128단위
+ - 4096까지 256단위로 
+  
+> 만약 엄청나게 큰 size의 객체(4096)가 들어오면 일반 해제를 하게 만들었습니다.  
+> 그정도로 큰 size의 데이터의 경우에는 Pooling에 따른 메리트가 없을 것 같다고 판단했기 때문입니다.
 
-그리고 xnew와 xdelete를 통해 MemoryPooling을 할 수 있게 만들었습니다. 만약 엄청나게 큰 size의 객체(4096)가 들어오면 일반 해제를 하게 만들었습니다. 그정도로 큰 size의 데이터의 경우에는 Pooling에 따른 메리트가 없을 것 같다고 판단했기 때문입니다.
 
+**new**
+```c++
+template<typename Type, typename... Args>
+Type* xnew(Args&&... args)
+{
+	Type* memory = static_cast<Type*>(PoolAllocator::Alloc(sizeof(Type)));
+	new(memory)Type(std::forward<Args>(args)...); // placement new, constructor
+	return memory;
+}
 
+template<typename Type>
+void xdelete(Type* obj)
+{
+	obj->~Type(); // destructor
+	PoolAllocator::Release(obj);
+}
+
+template<typename Type>
+shared_ptr<Type> MakeShared()
+{
+	return shared_ptr<Type>{ xnew<Type>(), xdelete<Type> };
+}
+```
+그리고 xnew와 xdelete를 통해 MemoryPooling을 쉽게 사용할 수 있게 만들었습니다. 
+
+사용 예시
+```c++
+class A
+{
+public:
+	A() {}
+	~A() {}
+	A(int a) : _a(a) {}
+private:
+	int _a;
+};
+int main(void)
+{
+	A* AClass = xnew<A>(1);
+	xdelete(AClass);
+}
+```
 
 
 
