@@ -29,6 +29,7 @@ private:
 TCP의 경우에는 Boundary가 없기 때문에 Write와 Read의 Pos를 변수로 두어 현재 읽고 쓴 곳이 어디까지인지 표시해줍니다.  
 
 # Send Buffer
+
 ## SendBuffer.h
 ```c++
 class SendBufferChunk;
