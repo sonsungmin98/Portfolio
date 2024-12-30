@@ -65,15 +65,15 @@ public:
 		GJobTimer->Reserve(tickAfter, shared_from_this(), job);
 	}
 
-	void				ClearJobs() { _jobs.Clear(); }
+	void ClearJobs() { _jobs.Clear(); }
 
 public:
-	void				Push(JobRef job, bool pushOnly = false);
-	void				Execute();
+	void Push(JobRef job, bool pushOnly = false);
+	void Execute();
 
 protected:
-	LockQueue<JobRef>	_jobs;
-	Atomic<int32>		_jobCount = 0;
+	LockQueue<JobRef> _jobs;
+	Atomic<int32> _jobCount = 0;
 };
 
 void JobQueue::Push(JobRef job, bool pushOnly)
