@@ -83,14 +83,14 @@ public:
 	MemoryPool(int32 allocSize);
 	~MemoryPool();
 
-	void			Push(MemoryHeader* ptr);
-	MemoryHeader*	Pop(void);
+	void Push(MemoryHeader* ptr);
+	MemoryHeader* Pop(void);
 
 private:
-	SLIST_HEADER	_header;
-	int32			_allocSize = 0;
-	atomic<int32>	_useCount = 0;
-	atomic<int32>	_reserveCount = 0;
+	SLIST_HEADER _header;
+	int32 _allocSize = 0;
+	atomic<int32> _useCount = 0;
+	atomic<int32> _reserveCount = 0;
 };
 ```
 Memory Header에는 기본적으로 여러 정보들을 담게 되며 SLIST_ENTRY 구조체를 상속 받고 있습니다.
