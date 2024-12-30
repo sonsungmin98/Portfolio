@@ -1,6 +1,5 @@
 # Recv Buffer
 Recv Buffer의 경우에는 다음과 같은 인터페이스를 제공합니다. Recv Buffer의 경우에는 Send Buffer와 달리 멀티쓰레드 환경을 고려하지 않아도 됩니다. 
-## RecvBuffer.h
 ```c++
 class RecvBuffer
 {
@@ -29,8 +28,7 @@ private:
 TCP의 경우에는 Boundary가 없기 때문에 Write와 Read의 Pos를 변수로 두어 현재 읽고 쓴 곳이 어디까지인지 표시해줍니다.  
 
 # Send Buffer
-
-## SendBuffer.h
+Send의 경우에 같은 데이터를 여러명에게 보내줘야하는 일이 비일비재 할 것입니다. 따라서 데이터의 복사 비용등을 절약하기 위해 SendBuffer를 만들었습니다.
 ```c++
 class SendBufferChunk;
 
@@ -94,13 +92,7 @@ private:
 };
 ```
 
-
-
-## SendBuffer.cpp
 ```c++
-#include "pch.h"
-#include "SendBuffer.h"
-
 SendBuffer::SendBuffer(SendBufferChunkRef owner, BYTE* buffer, uint32 allocSize)
 	:_owner(owner), _buffer(buffer), _allocSize(allocSize)
 {
@@ -160,8 +152,6 @@ SendBufferRef SendBufferManager::Open(uint32 size)
 	}
 
 	ASSERT_CRASH(LSendBufferChunk->IsOpen() == false);
-
-	// 다 썼으면 새거로 쇼체
 	if (LSendBufferChunk->FreeSize() < size)
 	{
 		LSendBufferChunk = Pop();
@@ -173,7 +163,6 @@ SendBufferRef SendBufferManager::Open(uint32 size)
 
 SendBufferChunkRef SendBufferManager::Pop()
 {
-	cout << "Pop Global SENDBUFFERCHUNCK" << endl;
 	{
 		WRITE_LOCK;
 		if (_sendBufferChunks.empty() == false)
@@ -195,7 +184,11 @@ void SendBufferManager::Push(SendBufferChunkRef buffer)
 
 void SendBufferManager::PushGlobal(SendBufferChunk* buffer)
 {
-	cout << "Push Global SENDBUFFERCHUNCK" << endl;
 	GSendBufferManager->Push(SendBufferChunkRef(buffer, PushGlobal));
 }
 ```
+SendBuffer는 크게 SendBuffer, SendBufferChunk, SendBufferManager로 구성되어 있습니다.
+- SendBuffer: SendBuffer를 나타내며, Buffer의 시작 주소, 패킷의 Size를 가지고 있습니다.
+- SendBufferChunk: SendBuffer를 사용할 때마다 만드는 것이 아닌, 미리 큰 크기의 영역을 할당하여 거기서 차례차례 할당하는 역활, TLS영역에 생성하여 Lock없이 접근이 가능합니다.
+- SendBufferManager: SendBufferChunk를 관리하기 위한 부분입니다. SendBufferChunk의 할당과 교체 등을 담당합니다.
+
