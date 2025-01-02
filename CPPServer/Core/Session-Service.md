@@ -175,7 +175,7 @@ protected:
 현재 service가 관리하는 Session의 관리를 위한 인테페이스로 구성되어 있습니다.
 ```c++
 ServerServiceRef service = MakeShared<ServerService>(
-  NetAddress(L"127.0.0.1", 7777),
+  NetAddress(L"127.0.0.1", 7777), // 임시
   MakeShared<IocpCore>(),
   MakeShared<GameSession>,
   100);
