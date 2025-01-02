@@ -28,7 +28,6 @@ void StompAllocator::Release(void* ptr)
 ## PoolAllocator
 
 Memory Pooling을 위한 Allocator입니다.
-자세한 내용은 다음을 참고 해주세요 [MemoryPool](https://github.com/sonsungmin98/Portfolio/blob/main/CPPServer/Core/Memory/MemoryPool.md)
 ```c++
 void* PoolAllocator::Alloc(int32 size)
 {
