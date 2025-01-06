@@ -36,7 +36,7 @@
 
 # MMORPG Server
 
-MMORPG를 위한 서버를 제작하려고 했습니다. 
+MMORPG를 위한 서버를 제작하고 있습니다. 
 
 **개발환경**
 - cpp
@@ -55,6 +55,8 @@ MMORPG를 위한 서버를 제작하려고 했습니다.
 - [PacketHandler](https://github.com/sonsungmin98/Portfolio/blob/main/CPPServer/Core/PacketHandler.md)
 - [Job(Task)](https://github.com/sonsungmin98/Portfolio/blob/main/CPPServer/Core/Job.md)
 
+**Contents**
+- [이동동기화]()
 
 # ToyLand
 
