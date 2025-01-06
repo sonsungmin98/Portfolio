@@ -122,6 +122,17 @@ void Session::Dispatch(IocpEvent* iocpEvent, int32 numOfBytes)
 ```
 Dispath를 통해 해당 EventType에 따라 알맞은 함수를 실행하게 됩니다.
 
+```c++
+void GameSession::OnRecvPacket(BYTE* buffer, int32 len)
+{
+	PacketSessionRef session = GetPacketSessionRef();
+	PacketHeader* header = reinterpret_cast<PacketHeader*>(buffer);
+
+	ClientPacketHandler::HandlePacket(session, buffer, len);
+}
+```
+다음과 같이 Packet이 Recv 됐으면 [PacketHandler](https://github.com/sonsungmin98/Portfolio/blob/main/CPPServer/Core/PacketHandler.md)에게 해당 Packet을 넘겨줍니다.
+
 ## Service
 Service는 이러한 Session을 관리하기 위해 만들었습니다.
 
