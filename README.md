@@ -44,7 +44,7 @@
 - iocp
 - protobuf
 - unreal 5.4
-- MS SQL
+- MSSQL
 
 **CORE**  
 서버의 CORE에 대한 부분입니다.
