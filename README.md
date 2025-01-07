@@ -35,8 +35,9 @@
 -	오픈 베타 테스트 출시
 
 # MMORPG Server
+![Step 3 (3)](https://github.com/user-attachments/assets/4a6f27b1-b185-44d9-a4ef-4da3f36a7eee)
 
-MMORPG를 위한 서버를 제작하고 있습니다. 
+펄어비스를 다니면서 서버와 클라이언트 작업을 동시에 진행했었습니다. 그때 서버에 대한 흥미가 생겨 개인적으로 서버를 제작하고 있는 중입니다. 서버는 검은 사막 모바일과 동일한 MMORPG를 기준으로 제작했습니다.
 
 **개발환경**
 - cpp
@@ -46,7 +47,6 @@ MMORPG를 위한 서버를 제작하고 있습니다.
 
 **CORE**  
 서버의 CORE에 대한 부분입니다.
-
 - [Memory](https://github.com/sonsungmin98/Portfolio/blob/main/CPPServer/Core/Memory.md) 
 - [Reader-Writer Lock](https://github.com/sonsungmin98/Portfolio/blob/main/CPPServer/Core/Reader-Writer%20Lock.md) 
 - [Recv-Send Buffer](https://github.com/sonsungmin98/Portfolio/blob/main/CPPServer/Core/Recv-Send%20Buffer.md) 
@@ -56,7 +56,7 @@ MMORPG를 위한 서버를 제작하고 있습니다.
 - [Job(Task)](https://github.com/sonsungmin98/Portfolio/blob/main/CPPServer/Core/Job.md)
 
 **Contents**
-- [이동동기화]()
+- [이동동기화](https://github.com/sonsungmin98/Portfolio/blob/main/CPPServer/Contents/%EC%9D%B4%EB%8F%99%EB%8F%99%EA%B8%B0%ED%99%94.md)
 
 # ToyLand
 
