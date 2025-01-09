@@ -45,6 +45,7 @@
 - protobuf
 - unreal 5.4
 - MSSQL
+- Python
 
 **CORE**  
 서버의 CORE에 대한 부분입니다.
