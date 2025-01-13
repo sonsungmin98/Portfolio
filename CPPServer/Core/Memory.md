@@ -144,9 +144,6 @@ MemoryHeader* MemoryPool::Pop(void)
 
 class MemoryPool;
 
-/*-------------
-	Memory
--------------*/
 class Memory
 {
 	enum
