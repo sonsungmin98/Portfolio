@@ -25,21 +25,6 @@ void StompAllocator::Release(void* ptr)
 }
 ```
 
-## PoolAllocator
-
-Memory Pooling을 위한 Allocator입니다.
-```c++
-void* PoolAllocator::Alloc(int32 size)
-{
-    return GMemory->Allocate(size);
-}
-
-void PoolAllocator::Release(void* ptr)
-{
-    GMemory->Release(ptr);
-}
-```
-
 # MemoryPool
 
 메모리의 할당과 해제에 따른 비용의 절감과, 메모리 단편화와 같은 문제를 해결하기 위해 Memory Pool을 제작했습니다. 풀에서 관리되는 객체의 경우 메모리 헤더를 부착해 관리를 위한 다양한 정보를 가지게 만들었습니다. 
