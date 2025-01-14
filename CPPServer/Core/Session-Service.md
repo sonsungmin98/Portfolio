@@ -10,7 +10,7 @@ public:
 	IocpObjectRef	owner;
 };
 ```
-IocpEvent는 Overlapped모델을 상속받아 사용합니다. 상속을 통해 넘겨주기 때문에 IO Completion Queue에 넘겨줄 떄 알맞은 IocpEvent를 넘겨줍니다. 따라서 GetQueuedCompletionStatus를 통해 Overlapped모델을 받을 때 넘겨준 IocpEvent를 받을 수 있습니다. 물론 reinterpret_cast로 캐스팅 하기 때문에 IocpEvent는 virtual 함수를 가지면 안됩니다. IocpEvent를는 IocpObject를 owner로 가집니다.
+IocpEvent는 Overlapped모델을 상속받아 사용합니다. 상속을 통해 넘겨주기 때문에 IO Completion Queue에 넘겨줄 떄 알맞은 IocpEvent를 넘겨줍니다. 따라서 GetQueuedCompletionStatus를 통해 Overlapped모델을 받을 때 넘겨준 IocpEvent를 받을 수 있습니다. IocpEvent를는 IocpObject를 owner로 가집니다.
 ## IocpObject
 ```c++
 class IocpObject : public enable_shared_from_this<IocpObject>
