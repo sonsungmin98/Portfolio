@@ -115,6 +115,44 @@
 - Engine: Unity 2020.2.3.f1
 - 담당 업무: Enemy(몬스터, 보스), UI, 현실 세계 연출, 튜토리얼 제작
 
+# 기타 프로젝트
+
+## Lost Home
+
+**유튜브** <img width="3%" src="https://github.com/user-attachments/assets/aac0d9b3-0c78-4982-b152-27a86e10f99a">
+
+[![Video Label](http://img.youtube.com/vi/tcz-f4rXtrI/0.jpg)](https://www.youtube.com/watch?v=tcz-f4rXtrI)
+
+**게임 개요**  
+- 게임명: Lost Home
+- 플랫폼: PC
+- 장르: 3D 턴제 게임
+- 개발 인원: 7명 (디자이너: 1명, 프로그래머: 1명, 아티스트: 5명)
+- 개발 기간: 4개월 (2021.08~2021.12)
+- 전시: 학사 전시회
+
+**개발환경**  
+- Client Engine: Unity
+- Server Engine: Photon
+- 담당 업무: 게임의 전체적인 업무
+
+## Coming Home
+
+![image](https://github.com/user-attachments/assets/3b3c3b9b-8010-49bf-9338-6b42e6d62732)
+
+**게임 개요**  
+- 게임명: Coming Home
+- 플랫폼: Android
+- 장르: 2D 공포 리듬게임
+- 개발 인원: 5명 (디자이너: 1명, 프로그래머: 2명, 아티스트: 2명)
+- 개발 기간: 3개월 (2020.09~2021.12)
+- 전시: 학사 전시회
+
+**개발환경**  
+- Client Engine: Unity
+- 담당 업무: 리듬 게임의 판정, 게임 시스템 설계
+
+
 # 코딩 스타일
 
 게임 개발의 경우 당연히도 여러 프로그래머 간의 협업을 통해 진행됩니다. 미래의 나 혹은 다른 사람이 제가 짠 코드를 보는 경우가 생길 수밖에 없습니다. 그럴 때마다 코드를 해석하는 것은 매우 비효율적인 상황입니다. 
