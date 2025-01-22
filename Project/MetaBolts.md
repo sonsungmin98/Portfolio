@@ -8,7 +8,11 @@
 <img width="48%" src = "https://github.com/user-attachments/assets/46abf7dd-7502-4c3e-a3bf-e24ca2efac82">
 
 플레이어가 특정 조건을 달성하면 해당 업적이 클리어 되고 업적에 따라 보상을 획득합니다.  
-  
+
+<p align="center" width="100%">
+    <img width="60%" src="https://github.com/user-attachments/assets/8cf2fc90-d6e2-4a36-bdcc-289777037abc">
+</p>
+
 업적의 경우 기본 구현은 Observer pattern을 이용하여 구현하였습니다. Observer pattern으로 구현한 이유는 업적 달성 확인에 대한 세부 구현 사항을 분리하고 싶었기 때문입니다. 
 먼저 singleton class를 만들고 subject를 추가합니다. 그 후 Observer class를 구성해 subject에 추가합니다. 
 각 업적의 업데이트가 필요한 상황에서 singleton class의 외부 호출부를 통해 관련 데이터들을 넘겨주면 그 후 Subject에 등록된 Observer들을 통해 업적 데이터들을 업데이트 해줬습니다. 
