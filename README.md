@@ -1,6 +1,6 @@
 # 개요
 
-**AWARD**  
+### AWARD
 |일자|AWARD|
 |-----------|------------|
 |2022|BIC 전시 - ToyLand|
@@ -8,7 +8,7 @@
 |2021|BIC 캐주얼 부분 후보 선정 - 도깨비|
 |2021|Unity Award Best Student 입상작 - 도깨비|
 
-**Project**  
+### Project  
 
 |개요|Project|
 |-----------|------------|
@@ -17,6 +17,9 @@
 |2022 대학교 졸업 작품|ToyLand|
 |2021 대학교 팀 프로젝트|Lost Home|
 |2021 대학교 팀 프로젝트|도깨비|
+
+### Skill
+C++, C#, Unity, Unreal, Python
 
 # MetaBolts
 **유튜브** <img width="3%" src="https://github.com/user-attachments/assets/aac0d9b3-0c78-4982-b152-27a86e10f99a">
@@ -40,7 +43,7 @@
 펄어비스를 다니면서 서버와 클라이언트 작업을 동시에 진행했었습니다. 그때 서버에 대한 흥미가 생겨 개인적으로 서버를 제작하고 있는 중입니다. 서버는 검은 사막 모바일과 동일한 MMORPG를 기준으로 제작했습니다.
 
 **개발환경**
-- cpp
+- c++
 - iocp
 - protobuf
 - unreal 5.4
@@ -79,7 +82,7 @@
 
 **개발환경**  
 - Engine: Unreal 4.26.2
-- 담당 업무: Player Character, 일부 UI, Interactive Object에 대한 작업  
+- 담당 업무: Player Character, UI, Interactive Object에 대한 작업  
 
 
 
